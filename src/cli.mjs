@@ -1,12 +1,10 @@
-#!/usr/bin/env node -r esm
-
 import 'localenv';
 import optimist from 'optimist';
 
 import log from 'book';
 import Debug from 'debug';
 
-import CreateServer from '../server';
+import CreateServer from './server.mjs';
 
 const debug = Debug('localtunnel');
 
@@ -38,14 +36,14 @@ if (argv.help) {
     process.exit();
 }
 
-const server = CreateServer({
+const cli = CreateServer({
     max_tcp_sockets: argv['max-sockets'],
     secure: argv.secure,
     domain: argv.domain,
 });
 
-server.listen(argv.port, argv.address, () => {
-    debug('server listening on port: %d', server.address().port);
+cli.listen(argv.port, argv.address, () => {
+    debug('server listening on port: %d', cli.address().port);
 });
 
 process.on('SIGINT', () => {

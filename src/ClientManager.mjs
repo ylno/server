@@ -1,8 +1,8 @@
 import { hri } from 'human-readable-ids';
 import Debug from 'debug';
 
-import Client from './Client';
-import TunnelAgent from './TunnelAgent';
+import Client from './Client.mjs';
+import TunnelAgent from './TunnelAgent.mjs';
 
 // Manage sets of clients
 //

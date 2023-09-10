@@ -1,7 +1,7 @@
 import assert from 'assert';
 import net from 'net';
 
-import ClientManager from './ClientManager';
+import ClientManager from './ClientManager.mjs';
 
 describe('ClientManager', () => {
     it('should construct with no tunnels', () => {
