@@ -9,6 +9,8 @@
     "test": "mocha --check-leaks --require esm './**/*.test.js'",
     "start": "node src/cli.mjs",
     "dev": "node-dev src/cli.mjs -- --port 3000",
+    "docker:build": "docker buildx build --platform linux/amd64,linux/arm64 --push -t mfrankl/localtunnelx:1.0.4 .",
+    "docker:run": "docker run --rm  -d --restart always --name localtunnelx --net host mfrankl/localtunnelx:1.0.2 --port 3010",
     "eebuild": "node esbuild.config.js",
     "estart": "node dist/server.js"
   },

@@ -55,6 +55,7 @@ export default function(opt) {
     // root endpoint
     app.use(async (ctx, next) => {
         const path = ctx.request.path;
+        console.log("root", path);
 
         // skip anything not on the root path
         if (path !== '/') {
@@ -63,6 +64,7 @@ export default function(opt) {
         }
 
         const isNewClientRequest = ctx.query['new'] !== undefined;
+        debug("is new %s", isNewClientRequest);
         if (isNewClientRequest) {
             const reqId = hri.random();
             debug('making new client with id %s', reqId);
@@ -82,6 +84,7 @@ export default function(opt) {
     // This is a backwards compat feature
     app.use(async (ctx, next) => {
         const parts = ctx.request.path.split('/');
+        console.log("parts", parts);
 
         // any request with several layers of paths is not allowed
         // rejects /foo/bar

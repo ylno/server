@@ -19,7 +19,7 @@ class ClientManager {
             tunnels: 0
         };
 
-        this.debug = Debug('lt:ClientManager');
+        this.debug = Debug('localtunnel:ClientManager');
 
         // This is totally wrong :facepalm: this needs to be per-client...
         this.graceTimeout = null;
@@ -34,7 +34,8 @@ class ClientManager {
 
         // can't ask for id already is use
         if (clients[id]) {
-            id = hri.random();
+            // id = hri.random();
+            this.debug("client %s already present, connecting anyways", id);
         }
 
         const maxSockets = this.opt.max_tcp_sockets;
@@ -53,6 +54,7 @@ class ClientManager {
         clients[id] = client;
 
         client.once('close', () => {
+            console.log("closed");
             this.removeClient(id);
         });
 
